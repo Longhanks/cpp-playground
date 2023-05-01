@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "x64-Debug-color-linux",
+      "displayName": "x64-Debug-color",
+      "inherits": "x64-Debug-linux",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS": "-fdiagnostics-color"
+      },
+      "environment": {
+        "CLICOLOR_FORCE": "1"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "x64-Debug-color",
+      "displayName": "x64-Debug-color",
+      "configurePreset": "x64-Debug-color-linux",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    }
+  ]
+}

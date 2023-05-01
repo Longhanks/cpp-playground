@@ -1,0 +1,74 @@
+// -*- jsonc -*-
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug current target (Linux)",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${command:cmake.launchTargetPath}",
+        "args": [
+          "2>&1"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${command:cmake.launchTargetDirectory}",
+        "environment": [],
+        "externalConsole": false,
+        "internalConsoleOptions": "openOnSessionStart",
+        "targetArchitecture": "x86_64",
+        "pipeTransport": {
+          "pipeProgram": "/bin/sh",
+          "pipeArgs": [
+            "-c",
+          ],
+          "debuggerPath": "tmpfile=${command:cmake.launchTargetDirectory}/stdout-unbuffered.gdb; echo 'set confirm off\nbreak main\ncommand $bpnum\n  call setvbuf(stdout, 0, 2, 0)\nend\n' > $tmpfile; gdb --silent -ex 'file ${command:cmake.launchTargetPath}' -ex \"\"source $tmpfile\"\""
+        },
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          },
+          {
+            "description": "Reduce gdb verbosity",
+            "text": "set print thread-events off",
+            "ignoreFailures": true
+          }
+        ]
+      },
+      {
+        "name": "Debug current target (Windows)",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${command:cmake.launchTargetPath}",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${command:cmake.launchTargetDirectory}",
+        "environment": [],
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "logging": {
+          "threadExit": true
+        },
+        "symbolOptions": {
+          "searchPaths": [
+            "https://msdl.microsoft.com/download/symbols"
+          ],
+          "searchMicrosoftSymbolServer": true,
+          "moduleFilter": {
+            "mode": "loadAllButExcluded",
+            "excludedModules": []
+          }
+        },
+        "sourceFileMap": {
+          "D:/a/_work/1/s/src/vctools/crt/vcstartup/src/startup": "C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.35.32215/crt/src/vcruntime",
+          "D:/a/_work/1/s/src/vctools/VC7Libs/Ship/ATLMFC": "C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Tools/MSVC/14.35.32215/atlmfc",
+          "minkernel/crts/ucrt/src/appcrt": "C:/Program Files (x86)/Windows Kits/10/Source/10.0.22621.0/ucrt"
+        },
+      }
+    ]
+  }
+  
