@@ -35,7 +35,7 @@
                 "showReuseMessage": false,
                 "clear": true
             },
-            "problemMatcher": "$msCompile"
+            "problemMatcher": ["$msCompile", "$gcc"]
         },
         {
             "label": "debug",

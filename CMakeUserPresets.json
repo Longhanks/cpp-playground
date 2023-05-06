@@ -16,17 +16,43 @@
         "lhs": "${hostSystemName}",
         "rhs": "Linux"
       }
+    },
+    {
+      "name": "x64-Debug-color-win32",
+      "displayName": "x64-Debug-color",
+      "inherits": "x64-Debug-win32",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER_LAUNCHER": "${sourceDir}/tools/MSVCColorizer.exe"
+      },
+      "environment": {
+        "CLICOLOR_FORCE": "1"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
     }
   ],
   "buildPresets": [
     {
-      "name": "x64-Debug-color",
+      "name": "x64-Debug-color-linux",
       "displayName": "x64-Debug-color",
       "configurePreset": "x64-Debug-color-linux",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Linux"
+      }
+    },
+    {
+      "name": "x64-Debug-color-win32",
+      "displayName": "x64-Debug-color",
+      "configurePreset": "x64-Debug-color-win32",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
       }
     }
   ]

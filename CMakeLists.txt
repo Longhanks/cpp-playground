@@ -7,6 +7,13 @@ project(cpp-playground LANGUAGES CXX)
 
 add_executable(cpp-playground source/main/src/main.cpp)
 
+if(WIN32)
+  target_sources(cpp-playground
+    PRIVATE 
+      cpp-playground.manifest
+  )
+endif()
+
 set_target_properties(cpp-playground
   PROPERTIES
     C_STANDARD                 17

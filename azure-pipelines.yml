@@ -1,0 +1,34 @@
+trigger:
+- master
+
+jobs:
+- job: Windows
+  pool:
+    vmImage: windows-latest
+  steps:
+  - checkout: self
+    submodules: true
+  - task: CmdLine@2
+    displayName: "Build with CMake"
+    inputs:
+      script: |
+        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
+        cmake.exe --preset x64-Debug-color-win32
+        cmake.exe --build --preset x64-Debug-color-win32 --target cpp-playground
+- job: Linux
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    submodules: true
+  - task: CmdLine@2
+    displayName: "Build with CMake"
+    inputs:
+      script: |
+        wget -nv https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-linux.zip
+        unzip ninja-linux.zip
+        sudo mv ninja /usr/bin/ninja
+        rm ninja-linux.zip
+        sudo chmod +x /usr/bin/ninja
+        cmake --preset x64-Debug-color-linux
+        cmake --build --preset x64-Debug-color-linux --target cpp-playground
